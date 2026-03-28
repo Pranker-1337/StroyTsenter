@@ -7,9 +7,9 @@ import { defineConfig } from 'vite';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
   return {
-    base: './',
+    base: mode === 'production' ? '/StroyTsenter/' : '/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
@@ -18,6 +18,8 @@ export default defineConfig(() => {
     },
     server: {
       hmr: true,
+      port: 3000,
+      host: '0.0.0.0',
     },
   };
 });
